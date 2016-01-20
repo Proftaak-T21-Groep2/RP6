@@ -18,23 +18,22 @@ RP6_DIRECTION dil = RP6_LEFT;
 
 void moveStationRight()
 {
-  Rp6.move( 100 , dif , 2000 );
-  Rp6.move( 100 , dif , 2000 );
-  delay(4000);
+  Rp6.move( 100 , dif , 3800 );
+  delay(9000);
   Rp6.rotate(100, dil, 93);
   delay(4000);
-  //Rp6.move( 100 , dif , 9000 );
-  //delay(4000);
+  Rp6.move( 100 , dif , 1650 );
+  delay(5000);;
 }
 
 void moveStationLeft()
 {
-  Rp6.move( 100 , dif , 1800 );
-  delay(4000);
+  Rp6.move( 100 , dif , 1650 );
+  delay(5000);
   Rp6.rotate(100, dil, 93);
   delay(4000);
-  //Rp6.move( 100 , dif , 12000 );
-  //delay(4000);
+  Rp6.move( 100 , dif , 1650 );
+  delay(5000);;
 
 }
 
