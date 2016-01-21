@@ -1,10 +1,12 @@
 //COM10
+#include <Rp6.h>
 #include <Timer.h>
 #include <Adafruit_NeoPixel.h>
 #include <SoftwareSerial.h>
 
 #define PIN 6
 #define NLEDS 9
+
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NLEDS, PIN, NEO_GRB + NEO_KHZ800);
 Timer timer;
@@ -30,15 +32,17 @@ void setup()
   //kenteken = "BL-09-PQ"; fuelType = "Diesel";
 
   Serial.begin(9600);
-  
+
   randomSeed(analogRead(0));
   fill_level = random(5, 25);
   fuel_start = fill_level * 0.7;
 
   showFuelLevel(fill_level);
-  
+
   strip.begin();
   strip.show();
+
+  Rp6.begin();
 }
 
 void loop()
@@ -47,15 +51,32 @@ void loop()
 
   command = getCommand();
 
-  if (command == "reset") {
+  if (command == "reset")
+  {
     fill_level = random(5, 25);
     fuel_start = fill_level * 0.7;
     showFuelLevel(fill_level);
 
     resetStrip();
-  } else if (command == "start") {
-    if (fill_level >= 0 && fill_level < 100) {
-      fillCar();
+  }
+  else if (command == "start")
+  {
+    if (fill_level >= 0 && fill_level < 100)
+    {
+      if (1)//todo naar pomp 1 rijden)
+      {
+        moveToStationLeft();
+        fillCar();
+        //klaar?? dan wegrijden
+        moveFromStationLeft();
+      }
+      else
+      { //anders naar pomp 2
+        moveToStationRight();
+        fillCar();
+        //klaar?? dan wegrijden
+        moveFromStationRight();
+      }
     }
   }
 }

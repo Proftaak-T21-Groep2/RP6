@@ -1,12 +1,6 @@
-#include "Rp6.h"
-
-RP6_registers regs;
-RP6_LEDs leds;
-RP6_DIRECTION dir = RP6_FORWARD;
-
-//RP6_direction_RECTION direction_R = RP6_RIGHT;
-//RP6_direction_RECTION direction_L = RP6_LEFT;
-
+RP6_DIRECTION direction_F = RP6_FORWARD;
+RP6_DIRECTION direction_R = RP6_RIGHT;
+RP6_DIRECTION direction_L = RP6_LEFT;
 
 void moveToStationRight()
 {
@@ -17,7 +11,6 @@ void moveToStationRight()
   Rp6.move( 100 , direction_F , 1700 );
   delay(6000);;
 }
-
 void moveToStationLeft()
 {
   Rp6.move( 100 , direction_F , 1650 );
@@ -46,13 +39,4 @@ void moveFromStationLeft()
   delay(3000);
   Rp6.move( 100 , direction_F , 3700 );
   delay(8000);
-}
-void setup()
-{
-  Serial.begin(9600);
-
-  Rp6.begin();
-}
-void loop()
-{
 }
